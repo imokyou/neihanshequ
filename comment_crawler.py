@@ -67,9 +67,11 @@ def crawl_comment(video):
     if resp:
         comments = parse_items(resp)
         _DB.save_comment(comments)
-        gids = [int(c['group_id']) for c in comments]
-        _DB.video_top_comments_updated(gids)
         logging.info('{} 热门评论已获取'.format(video['video_id']))
+    else:
+        logging.info('{} 暂无热门评论'.format(video['video_id']))
+    gids = [video['group_id']]
+    _DB.video_top_comments_updated(gids)
 
 
 class Crawler(object):

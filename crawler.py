@@ -36,7 +36,7 @@ class NeihanSpider(object):
         self._db.save(items)
 
     def crawl_video(self):
-        return self._crawler(category_id="12")
+        return self._crawler(category_id="109")
         # return self._crawler('-104')
 
     # def crawl_video_meinv(self):

@@ -12,6 +12,7 @@ from sqlalchemy.dialects.postgresql import ARRAY
 from datetime import datetime
 import logging
 import json
+import traceback
 
 Base = declarative_base()
 
@@ -154,6 +155,7 @@ class Mgr(object):
                 .update({'top_comments': 1}, synchronize_session='fetch')
             self.session.commit()
         except Exception, e:
+            traceback.print_exc()
             self.session.rollback()
             logging.warning('add ad source error: %s' % e, exc_info=True)
         finally:
