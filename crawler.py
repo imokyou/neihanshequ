@@ -9,7 +9,7 @@ from utils import get_page, conbine_params
 from db import DBStore
 
 
-_WORKER_THREAD_NUM = 1
+_WORKER_THREAD_NUM = 4
 
 
 class NeihanMetaClass(type):
@@ -36,11 +36,16 @@ class NeihanSpider(object):
         self._db.save(items)
 
     def crawl_video(self):
-        return self._crawler(category_id="109")
-        # return self._crawler('-104')
+        return self._crawler(content_type='-104')
 
-    # def crawl_video_meinv(self):
-    #     return self._crawler("-104", "66")
+    def crawl_video_dx(self):
+        return self._crawler(category_id="189")
+
+    def crawl_video_mt(self):
+        return self._crawler(category_id="109")
+
+    def crawl_video_ns(self):
+        return self._crawler(category_id="12")
 
     def _crawler(self, content_type=None, category_id=None):
         try:
@@ -48,41 +53,43 @@ class NeihanSpider(object):
             ret = []
             params = {
                 "min_time": str(int(time())),
-                "resolution": "1080*1920",
-                "screen_width": "1080",
-                # "content_type": str(content_type),
+                "resolution": "1440*2560",
+                "screen_width": "1440",
+
+                "aid": "7",
+                "device_brand": "samsung",
+                "device_id": "39614193210",
+                "device_type": "SM-G9350",
+                "iid": "15628443576",
+                "openudid": "a7f0b3b274b19977",
+                "uuid": "356156072316243",
 
                 "ac": "wifi",
-                "aid": "7",
                 "am_city": "广州市",
-                "am_latitude": "23.068921",
-                "am_loc_time": "1506351349045",
+                "am_latitude": "23.122795",
+                "am_loc_time": "1506562776598",
                 "am_longitude": "113.407836",
                 "app_name": "joke_essay",
-                "channel": "oppo-cpa",
+                "channel": "samsungapps",
                 "count": "30",
-                "device_brand": "OnePlus",
-                "device_id": "39503669487",
                 "device_platform": "android",
-                "device_type": "ONEPLUS A5000",
                 "double_col_mode": "0",
-                "dpi": "480",
+                "dpi": "640",
                 "essence": "1",
-                "iid": "15475911318",
+
                 "latitude": "23.07214716",
-                "local_request_tag": "1506351377785",
+                "local_request_tag": "1506562863504",
                 "longitude": "113.40226613",
-                "manifest_version_code": "660",
+                "manifest_version_code": "661",
                 "message_cursor": "-1",
                 "mpic": "1",
-                "openudid": "683195cfdb2b2c4c",
-                "os_api": "25",
+
+                "os_api": "24",
                 "os_version": "7.1.1",
                 "ssmix": "a",
-                "update_version_code": "6603",
-                "uuid": "864630039828537",
-                "version_code": "660",
-                "version_name": "6.6.0",
+                "update_version_code": "6613",
+                "version_code": "661",
+                "version_name": "6.6.1",
                 "video_cdn_first": "1",
                 "webp": "1"
             }
@@ -106,6 +113,9 @@ class NeihanSpider(object):
 
     def _parse_item(self, data):
         info = {}
+        group = data.get('group', '')
+        if not group:
+            return info
         if 'is_video' in data['group'] and data['group']['is_video'] == 1:
             info = self._video_item(data)
         return info
@@ -121,6 +131,7 @@ class NeihanSpider(object):
             'category_id': d['category_id'],
             'category_name': d['category_name'],
             'url': d['origin_video']['url_list'][0]['url'],
+            'cover_image': d['large_cover']['url_list'][0]['url'],
             'online_time': data['online_time'],
 
             'user_id': d['user']['user_id'],
@@ -131,6 +142,8 @@ class NeihanSpider(object):
             'bury_count': d['bury_count'],
             'repin_count': d['repin_count'],
             'share_count': d['share_count'],
+            'digg_count': d['digg_count'],
+            'comment_count': d['comment_count'],
             'has_comments': int(d['has_comments']),
             'comments': json.dumps(data['comments']),
             'top_comments': 0
@@ -142,7 +155,7 @@ class Crawler(object):
 
     def run(self):
         logging.info('开始爬内涵了了了了...')
-        pools = Pool(4)
+        pools = Pool(_WORKER_THREAD_NUM)
         ps = NeihanSpider()
         while True:
             pools.map(ps.get_raw_items, ps.__CrawlFunc__)

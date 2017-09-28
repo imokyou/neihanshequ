@@ -1,0 +1,82 @@
+http://lf.snssdk.com/neihan/stream/category/data/v2/?mpic=1&webp=1&essence=1&video_cdn_first=1&category_id=66&level=6&message_cursor=-1&count=30&min_time=1506352589&screen_width=1080&double_col_mode=0&local_request_tag=1506352711872&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+
+http://iu.snssdk.com/neihan/stream/category/data/v2/?mpic=1&webp=1&essence=1&video_cdn_first=1&category_id=65&level=6&message_cursor=-1&count=30&min_time=1506393717&screen_width=1080&double_col_mode=0&local_request_tag=1506393970303&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+
+http://lf.snssdk.com/neihan/stream/mix/v1/?mpic=1&webp=1&essence=1&video_cdn_first=1&fetch_activity=1&content_type=-101&message_cursor=-1&longitude=113.36693342873778&latitude=23.125697180511434&am_longitude=113.37267706517719&am_latitude=23.12333161284324&am_loc_time=1506395352000&count=30&min_time=1506395474&screen_width=1080&double_col_mode=0&local_request_tag=1506395480388&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+
+http://lf.snssdk.com/neihan/stream/category/data/v2/?mpic=1&webp=1&essence=1&video_cdn_first=1&category_id=12&level=6&message_cursor=-1&count=30&min_time=1506395918&screen_width=1080&double_col_mode=0&local_request_tag=1506395958107&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+
+http://is.snssdk.com/neihan/stream/mix/v1/?mpic=1&webp=1&essence=1&video_cdn_first=1&fetch_activity=1&content_type=-101&message_cursor=-1&longitude=113.36713833441289&latitude=23.12598917109845&am_longitude=113.372396&am_latitude=23.1228&am_city=%E5%B9%BF%E5%B7%9E%E5%B8%82&am_loc_time=1506405685574&count=30&max_time=1506399990&screen_width=1080&double_col_mode=0&local_request_tag=1506405816920&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+
+
+
+
+
+
+# 推荐列表
+http://lf.snssdk.com/neihan/stream/mix/v1/?mpic=1&webp=1&essence=1&video_cdn_first=1&fetch_activity=1&content_type=-101&message_cursor=-1&longitude=113.36713833441289&latitude=23.12598917109845&am_longitude=113.372392&am_latitude=23.122803&am_city=%E5%B9%BF%E5%B7%9E%E5%B8%82&am_loc_time=1506409306876&count=30&min_time=1506410260&screen_width=1080&double_col_mode=0&local_request_tag=1506410282841&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+# 默认视频
+http://lf.snssdk.com/neihan/stream/mix/v1/?mpic=1&webp=1&essence=1&video_cdn_first=1&content_type=-104&message_cursor=-1&longitude=113.36713833441289&latitude=23.12598917109845&am_longitude=113.372392&am_latitude=23.122803&am_city=%E5%B9%BF%E5%B7%9E%E5%B8%82&am_loc_time=1506409306876&count=30&min_time=1506408521&screen_width=1080&double_col_mode=0&local_request_tag=1506410315250&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+
+
+
+http://is.snssdk.com/neihan/comments/?group_id=70377693537&item_id=70377693537&count=20&offset=0&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+
+http://lf.snssdk.com/neihan/stream/category/data/v2/?mpic=1&webp=1&essence=1&video_cdn_first=1&category_id=109&level=6&message_cursor=-1&count=30&min_time=1506482630&screen_width=1080&double_col_mode=0&local_request_tag=1506482633761&iid=15475911318&device_id=39503669487&ac=wifi&channel=oppo-cpa&aid=7&app_name=joke_essay&version_code=660&version_name=6.6.0&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&os_api=25&os_version=7.1.1&uuid=864630039828537&openudid=683195cfdb2b2c4c&manifest_version_code=660&resolution=1080*1920&dpi=480&update_version_code=6603
+
+
+http://lf.snssdk.com/neihan/stream/mix/v1/?mpic=1&webp=1&essence=1&video_cdn_first=1&content_type=-103&message_cursor=-1&am_longitude=113.372403&am_latitude=23.122795&am_city=%E5%B9%BF%E5%B7%9E%E5%B8%82&am_loc_time=1506562776598&count=30&screen_width=1440&double_col_mode=0&enable_image_comment=0&local_request_tag=1506562863504&iid=15628443576&device_id=39614193210&ac=wifi&channel=samsungapps&aid=7&app_name=joke_essay&version_code=661&version_name=6.6.1&device_platform=android&ssmix=a&device_type=SM-G9350&device_brand=samsung&os_api=24&os_version=7.0&uuid=356156072316243&openudid=a7f0b3b274b19977&manifest_version_code=661&resolution=1440*2560&dpi=640&update_version_code=6613
+
+
+{
+  "65": "搞笑视频",
+  "103": "音乐风云",
+  "104": "聊电影",
+  "242": "鬼畜视频",
+  "243": "舞蹈视频",
+  "244": "魔术视频",
+  "245": "牛人翻唱",
+  "247": "才艺视频",
+  "251": "体育视频",
+  "252": "科技视频",
+  "253": "情感视频",
+  "254": "游戏视频",
+  "255": "萌宝视频"
+}
+
+
+能抓的字段:
+1.视频或的文字描述
+2.分类名称
+3.视频的URL
+4.发布者名称
+5.发布者头像
+6.视频播放次数
+7.视频被踩次数
+8.被顶次数
+9.分享次数
+10.是否有置顶评论(就是在视频列表里能看到的评论)
+11.置顶评论列表
+
+
+
+69320953271
+69320953271
+
+
+SELECT videos.id AS videos_id, videos.group_id AS videos_group_id, videos.item_id AS videos_item_id, videos.video_id AS videos_video_id, videos.content AS videos_content, videos.category_id AS videos_category_id, videos.category_name AS videos_category_name, videos.url AS videos_url, videos.online_time AS videos_online_time, videos.user_id AS videos_user_id, videos.user_name AS videos_user_name, videos.user_avatar AS videos_user_avatar, videos.play_count AS videos_play_count, videos.bury_count AS videos_bury_count, videos.repin_count AS videos_repin_count, videos.share_count AS videos_share_count, videos.has_comments AS videos_has_comments, videos.comments AS videos_comments, videos.top_comments AS videos_top_comments 
+FROM videos 
+WHERE videos.top_comments = 0 ORDER BY videos.online_time DESC LIMIT 10
+
+
+{'play_count': 368905, 'has_comments': 0, 'category_id': 12, 'user_id': 59358318393, 'top_comments': 0, 'bury_count': 441, 'repin_count': 252, 'url': u'http://v11-nh.ixigua.com/ba551ddf27190b3fdd8994844e26f073/59cb1b58/video/m/220c6e6bfcdb3eb498cafd04e035d1f2bed11514dd90000bf450a3aaacf/', 'user_name': u'\u5929\u5929\u8fd8\u662f\u90a3\u4e2a\u5929', 'video_id': u'83c41a63e19f461ea1148d4f47f11f8e', 'comments': '[]', 'content': u'\u6bb5\u5b50\u91cc\u7684\u9aa8\u7070\u7ea7\u5973\u795e\U0001f601', 'item_id': 69962969840, 'user_avatar': u'http://p1.pstatp.com/medium/2c63000916bddb49b635', 'share_count': 69, 'group_id': 69962969840, 'online_time': 1506483032, 'category_name': u'\u5973\u795e\u6765\u4e86'}
+
+

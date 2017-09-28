@@ -38,6 +38,7 @@ class Video(BaseModel):
     category_id = Column(Integer, nullable=False)
     category_name = Column(VARCHAR(128), nullable=False)
     url = Column(VARCHAR(512), nullable=False)
+    cover_image = Column(VARCHAR(512), nullable=False)
     online_time = Column(Integer)
 
     user_id = Column(VARCHAR(64), nullable=False)
@@ -48,6 +49,8 @@ class Video(BaseModel):
     bury_count = Column(Integer, default=0)
     repin_count = Column(Integer, default=0)
     share_count = Column(Integer, default=0)
+    digg_count = Column(Integer, default=0)
+    comment_count = Column(Integer, default=0)
     has_comments = Column(Integer, default=0)
     comments = Column(TEXT, nullable=True)
     top_comments = Column(Integer)
@@ -62,6 +65,7 @@ class Video(BaseModel):
         ret["category_id"] = self.category_id
         ret["category_name"] = self.category_name
         ret["url"] = self.url
+        ret["cover_image"] = self.cover_image
         ret["user_id"] = self.user_id
         ret["user_name"] = self.user_name
         ret["user_avatar"] = self.user_avatar
@@ -69,6 +73,8 @@ class Video(BaseModel):
         ret["bury_count"] = int(self.bury_count)
         ret["repin_count"] = int(self.repin_count)
         ret["share_count"] = int(self.share_count)
+        ret["digg_count"] = int(self.digg_count)
+        ret["comment_count"] = int(self.comment_count)
         ret["has_comments"] = int(self.has_comments)
         ret["comments"] = json.loads(self.comments)
         ret["top_comments"] = int(self.top_comments)
@@ -124,7 +130,9 @@ class Mgr(object):
                         'play_count': data['play_count'],
                         'bury_count': data['bury_count'],
                         'repin_count': data['repin_count'],
-                        'share_count': data['share_count']
+                        'share_count': data['share_count'],
+                        'digg_count': data['digg_count'],
+                        'comment_count': data['comment_count']
                     }, synchronize_session='fetch')
             self.session.commit()
         except Exception as e:
