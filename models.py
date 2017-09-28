@@ -91,7 +91,7 @@ class Comment(BaseModel):
     user_avatar = Column(VARCHAR(256), nullable=False)
     create_time = Column(Integer)
     digg_count = Column(Integer, default=0)
-    comments_count = Column(Integer, default=0)
+    comment_count = Column(Integer, default=0)
     content = Column(VARCHAR(1024), nullable=False)
 
     def conv_result(self):

@@ -19,26 +19,27 @@ _PARAMS = {
     "app_name": "joke_essay",
     "offset": "0",
     "ssmix": "a",
-    "device_type": "ONEPLUS A5000",
-    "os_api": "25",
-    "uuid": "864630039828537",
-    "version_code": "660",
-    "os_version": "7.1.1",
-    "update_version_code": "6603",
-    "channel": "oppo-cpa",
+    "device_type": "SM-G9350",
+    "os_api": "24",
+    "uuid": "356156072316243",
+    "version_code": "661",
+    "os_version": "7.0",
+    "update_version_code": "6613",
+    "channel": "samsungapps",
     "device_platform": "android",
-    "iid": "15475911318",
-    "device_brand": "OnePlus",
-    "manifest_version_code": "660",
-    "version_name": "6.6.0",
-    "openudid": "683195cfdb2b2c4c",
-    "device_id": "39503669487",
+    "iid": "15628443576",
+    "device_brand": "samsung",
+    "manifest_version_code": "661",
+    "version_name": "6.6.1",
+    "openudid": "a7f0b3b274b19977",
+    "device_id": "39614193210",
     "count": "20",
     "aid": "7",
-    "resolution": "1080*1920",
-    "dpi": "480"
+    "resolution": "1440*2560",
+    "dpi": "640"
 }
 _API = 'http://is.snssdk.com/neihan/comments/'
+_CRAWL_PAGE_SLEEP = 4
 
 
 def parse_items(resp):
@@ -53,7 +54,7 @@ def parse_items(resp):
             'create_time': data['create_time'],
             'content': data['text'],
             'digg_count': int(data['digg_count']),
-            'comments_count': int(data['second_level_comments_count'])
+            'comment_count': int(data['second_level_comments_count'])
         }
         top_comments.append(info)
     return top_comments
@@ -87,7 +88,7 @@ class Crawler(object):
             videos = _DB.get_videos(params)
             pools.map(crawl_comment, videos)
             logging.info('主进程休息 {} 秒后再爬取评论...'.format(CRAWL_PAGE_SLEEP))
-            sleep(CRAWL_PAGE_SLEEP)
+            sleep(_CRAWL_PAGE_SLEEP)
 
 
 if __name__ == '__main__':

@@ -85,7 +85,7 @@ class NeihanSpider(object):
                 "mpic": "1",
 
                 "os_api": "24",
-                "os_version": "7.1.1",
+                "os_version": "7.0",
                 "ssmix": "a",
                 "update_version_code": "6613",
                 "version_code": "661",
