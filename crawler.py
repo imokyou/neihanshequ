@@ -148,7 +148,7 @@ class NeihanSpider(object):
             'comments': json.dumps(data['comments']),
             'top_comments': 0
         }
-        info['vurl'] = 'http://i.snssdk.com/neihan/video/playback/?video_id={}&quality=480p&line=0&is_gif=0.mp4'.format(d['video_id'])
+        info['vurl'] = 'http://i.snssdk.com/neihan/video/playback/timestamp/?video_id={}&quality=480p&line=0&is_gif=0.mp4'.format(d['video_id'])
         return info
 
 
