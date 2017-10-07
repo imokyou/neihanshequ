@@ -105,7 +105,7 @@ class Comment(BaseModel):
         ret["user_avatar"] = self.user_avatar
         ret["create_time"] = int(self.create_time)
         ret["digg_count"] = int(self.digg_count)
-        ret["comments_count"] = int(self.comments_count)
+        ret["comment_count"] = int(self.comment_count)
         ret["content"] = content
         return ret
 

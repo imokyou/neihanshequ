@@ -68,7 +68,7 @@ def crawl_comment(video):
     if resp:
         comments = parse_items(resp)
         _DB.save_comment(comments)
-        logging.info('{} 热门评论已获取'.format(video['video_id']))
+        logging.info('{} 热门评论已获取, 共{}个评论'.format(video['video_id'], len(comments)))
     else:
         logging.info('{} 暂无热门评论'.format(video['video_id']))
     gids = [video['group_id']]
