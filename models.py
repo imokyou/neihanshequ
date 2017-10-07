@@ -39,6 +39,7 @@ class Video(BaseModel):
     category_id = Column(Integer, nullable=False)
     category_name = Column(VARCHAR(128), nullable=False)
     url = Column(VARCHAR(512), nullable=False)
+    vurl = Column(VARCHAR(256))
     cover_image = Column(VARCHAR(512), nullable=False)
     online_time = Column(Integer)
 
@@ -68,6 +69,7 @@ class Video(BaseModel):
         ret["category_id"] = self.category_id
         ret["category_name"] = self.category_name
         ret["url"] = self.url
+        ret["vurl"] = self.vurl
         ret["cover_image"] = self.cover_image
         ret["user_id"] = self.user_id
         ret["user_name"] = self.user_name
