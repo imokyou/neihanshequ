@@ -50,6 +50,8 @@ CREATE TABLE IF NOT EXISTS `videos` (
     PRIMARY KEY (`id`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ALTER TABLE `videos` ADD UNIQUE (`video_id`);
+ALTER TABLE `videos` ADD COLUMN `is_expired` INT(11) DEFAULT '0';
+ALTER TABLE `videos` ADD COLUMN `check_expire_time` BIGINT(20) DEFAULT '0';
 
 CREATE TABLE IF NOT EXISTS `comments` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,

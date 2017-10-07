@@ -29,6 +29,9 @@ class DBStore(object):
     def video_top_comments_updated(self, gids):
         self.mgr.video_top_comments_updated(gids)
 
+    def video_expire_updated(self, gids):
+        self.mgr.video_expire_updated(gids)
+
     def save_csv(self, items):
         for k, v in enumerate(items):
             pass

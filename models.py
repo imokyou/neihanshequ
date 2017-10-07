@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker, relationship, backref
 from sqlalchemy.dialects.mysql import VARCHAR, BIGINT, TINYINT, DATETIME, TEXT, CHAR
 from sqlalchemy.dialects.postgresql import ARRAY
 from datetime import datetime
+from time import time
 import logging
 import json
 import traceback
@@ -54,6 +55,8 @@ class Video(BaseModel):
     has_comments = Column(Integer, default=0)
     comments = Column(TEXT, nullable=True)
     top_comments = Column(Integer)
+    is_expired = Column(Integer)
+    check_expire_time = Column(BIGINT)
 
     def conv_result(self):
         ret = {}
@@ -78,6 +81,9 @@ class Video(BaseModel):
         ret["has_comments"] = int(self.has_comments)
         ret["comments"] = json.loads(self.comments)
         ret["top_comments"] = int(self.top_comments)
+        ret["is_expired"] = int(self.is_expired)
+        ret["check_expire_time"] = int(self.check_expire_time)
+        ret['online_time'] = int(self.online_time)
         return ret
 
 
@@ -165,7 +171,22 @@ class Mgr(object):
         except Exception, e:
             traceback.print_exc()
             self.session.rollback()
-            logging.warning('add ad source error: %s' % e, exc_info=True)
+            logging.warning('video top_comments updated error: %s' % e, exc_info=True)
+        finally:
+            self.session.close()
+
+    def video_expire_updated(self, gids):
+        try:
+            if not gids:
+                return None
+            self.session.query(Video) \
+                .filter(Video.group_id.in_(gids)) \
+                .update({'is_expired': 1, 'check_expire_time': time()}, synchronize_session='fetch')
+            self.session.commit()
+        except Exception, e:
+            traceback.print_exc()
+            self.session.rollback()
+            logging.warning('video expire update error: %s' % e, exc_info=True)
         finally:
             self.session.close()
 
@@ -179,12 +200,24 @@ class Mgr(object):
                 q = q.filter(Video.category_id == int(params['category_id']))
             if params.get('category_name', '') != '':
                 q = q.filter(Video.category_name.contains(category_name))
-            q = q.order_by(Video.online_time.desc())
+            if params.get('is_expired', '') != '':
+                q = q.filter(Video.is_expired == int(params['is_expired']))
+            if params.get('online_time', '') != '':
+                q = q.filter(Video.online_time >= int(params['online_time']))
+            if params.get('order', '') == 'asc':
+                q = q.order_by(Video.online_time.asc())
+            else:
+                q = q.order_by(Video.online_time.desc())
             if params.get('limit', '') == '':
                 limit = 100
             else:
                 limit = int(params.get('limit'))
-            rows = q.limit(limit)
+            if int(params.get('page', 0)) == 0:
+                offset = 0
+            else:
+                offset = (int(params.get('page'))-1)*limit
+            rows = q.limit(limit).offset(offset)
+
             for row in rows:
                 ret.append(row.conv_result())
         except Exception as e:
