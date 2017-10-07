@@ -89,6 +89,67 @@ class Video(BaseModel):
         return ret
 
 
+class VideoWeb(BaseModel):
+    __tablename__ = "videos_web"
+    id = Column("id", Integer, primary_key=True)
+
+    group_id = Column(Integer)
+    item_id = Column(Integer)
+    video_id = Column(VARCHAR(64), nullable=False)
+    content = Column(VARCHAR(1024), nullable=True)
+    category_id = Column(Integer, nullable=False)
+    category_name = Column(VARCHAR(128), nullable=False)
+    url = Column(VARCHAR(512), nullable=False)
+    vurl = Column(VARCHAR(256))
+    cover_image = Column(VARCHAR(512), nullable=False)
+    online_time = Column(Integer)
+
+    user_id = Column(VARCHAR(64), nullable=False)
+    user_name = Column(VARCHAR(128), nullable=False)
+    user_avatar = Column(VARCHAR(256), nullable=False)
+
+    play_count = Column(Integer, default=0)
+    bury_count = Column(Integer, default=0)
+    repin_count = Column(Integer, default=0)
+    share_count = Column(Integer, default=0)
+    digg_count = Column(Integer, default=0)
+    comment_count = Column(Integer, default=0)
+    has_comments = Column(Integer, default=0)
+    comments = Column(TEXT, nullable=True)
+    top_comments = Column(Integer)
+    is_expired = Column(Integer)
+    check_expire_time = Column(BIGINT)
+
+    def conv_result(self):
+        ret = {}
+        ret["id"] = self.id
+        ret["group_id"] = self.group_id
+        ret["item_id"] = self.item_id
+        ret["video_id"] = self.video_id
+        ret["content"] = self.content
+        ret["category_id"] = self.category_id
+        ret["category_name"] = self.category_name
+        ret["url"] = self.url
+        ret["vurl"] = self.vurl
+        ret["cover_image"] = self.cover_image
+        ret["user_id"] = self.user_id
+        ret["user_name"] = self.user_name
+        ret["user_avatar"] = self.user_avatar
+        ret["play_count"] = int(self.play_count)
+        ret["bury_count"] = int(self.bury_count)
+        ret["repin_count"] = int(self.repin_count)
+        ret["share_count"] = int(self.share_count)
+        ret["digg_count"] = int(self.digg_count)
+        ret["comment_count"] = int(self.comment_count)
+        ret["has_comments"] = int(self.has_comments)
+        ret["comments"] = json.loads(self.comments)
+        ret["top_comments"] = int(self.top_comments)
+        ret["is_expired"] = int(self.is_expired)
+        ret["check_expire_time"] = int(self.check_expire_time)
+        ret['online_time'] = int(self.online_time)
+        return ret
+
+
 class Comment(BaseModel):
     __tablename__ = "comments"
     id = Column("id", Integer, primary_key=True)
@@ -153,6 +214,44 @@ class Mgr(object):
         try:
             exists = self.session.query(Video) \
                 .filter(Video.video_id == video_id) \
+                .count()
+            if exists:
+                return True
+        except Exception as e:
+            logging.warning("check video exists error : %s" % e, exc_info=True)
+        finally:
+            self.session.close()
+        return False
+
+    def add_video_web(self, data):
+        try:
+            if not data:
+                return None
+            if not self.video_web_exists(data['video_id']):
+                self.session.add(VideoWeb(**data))
+            else:
+                self.session.query(VideoWeb) \
+                    .filter(VideoWeb.video_id == data['video_id']) \
+                    .update({
+                        'url': data['url'],
+                        'play_count': data['play_count'],
+                        'bury_count': data['bury_count'],
+                        'repin_count': data['repin_count'],
+                        'share_count': data['share_count'],
+                        'digg_count': data['digg_count'],
+                        'comment_count': data['comment_count']
+                    }, synchronize_session='fetch')
+            self.session.commit()
+        except Exception as e:
+            self.session.rollback()
+            logging.warning("add video web error : %s" % e, exc_info=True)
+        finally:
+            self.session.close()
+
+    def video_web_exists(self, video_id):
+        try:
+            exists = self.session.query(VideoWeb) \
+                .filter(VideoWeb.video_id == video_id) \
                 .count()
             if exists:
                 return True

@@ -17,6 +17,10 @@ class DBStore(object):
         for k, v in enumerate(items):
             self.mgr.add_video(v)
 
+    def save_web(self, items):
+        for k, v in enumerate(items):
+            self.mgr.add_video_web(v)
+
     def save_comment(self, items):
         for k, v in enumerate(items):
             self.mgr.add_comment(v)
