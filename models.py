@@ -303,8 +303,8 @@ class Mgr(object):
                 q = q.filter(Video.category_id == int(params['category_id']))
             if params.get('category_name', '') != '':
                 q = q.filter(Video.category_name.contains(category_name))
-            if params.get('is_expired', '') != '':
-                q = q.filter(Video.is_expired == int(params['is_expired']))
+            # if params.get('is_expired', '') != '':
+            #     q = q.filter(Video.is_expired == int(params['is_expired']))
             if params.get('online_time', '') != '':
                 q = q.filter(Video.online_time >= int(params['online_time']))
             if params.get('order', '') == 'asc':
