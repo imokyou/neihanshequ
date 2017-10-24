@@ -57,6 +57,8 @@ def parse_items(resp):
             'comment_count': int(data['second_level_comments_count'])
         }
         top_comments.append(info)
+        if len(top_comments) >= 5:
+            break
     return top_comments
 
 
