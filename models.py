@@ -189,6 +189,8 @@ class Mgr(object):
         try:
             if not data:
                 return None
+            if 'source' not in data:
+                data['source'] = 'neihan'
             if not self.video_exists(data['video_id']):
                 self.session.add(Video(**data))
             else:
@@ -306,9 +308,9 @@ class Mgr(object):
             if params.get('online_time', '') != '':
                 q = q.filter(Video.online_time >= int(params['online_time']))
             if params.get('order', '') == 'asc':
-                q = q.order_by(Video.online_time.asc())
+                q = q.order_by(Video.comment_count.asc())
             else:
-                q = q.order_by(Video.online_time.desc())
+                q = q.order_by(Video.comment_count.desc())
             if params.get('limit', '') == '':
                 limit = 100
             else:

@@ -53,6 +53,7 @@ ALTER TABLE `videos` ADD UNIQUE (`video_id`);
 ALTER TABLE `videos` ADD COLUMN `is_expired` INT(11) DEFAULT '0';
 ALTER TABLE `videos` ADD COLUMN `check_expire_time` BIGINT(20) DEFAULT '0';
 ALTER TABLE `videos` ADD COLUMN `vurl` VARCHAR(256) DEFAULT '';
+ALTER TABLE `videos` ADD COLUMN `source` VARCHAR(16) DEFAULT 'neihan';
 
 CREATE TABLE IF NOT EXISTS `videos_web` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,

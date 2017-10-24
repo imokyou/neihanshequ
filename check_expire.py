@@ -29,8 +29,8 @@ def checker():
             'order': 'asc',
             'limit': 100,
             'page': page,
-            'is_expired': 0,
-            'online_time': 1507132800
+            # 'is_expired': 0,
+            # 'online_time': 1507132800
         }
         urls = _DB.get_videos(params)
         if len(urls) == 0:
@@ -39,7 +39,9 @@ def checker():
         page += 1
         gids = []
         for u in urls:
-            resp = requests.head(u['url'], headers=HEADERS)
+            r = requests.head(u['vurl'].replace('timestamp', str(time())), headers=HEADERS)
+            resp = requests.head(r.headers['location'], headers=HEADERS)
+            print resp, resp.headers
             if resp.status_code == 403:
                 expire_num += 1
                 if u['group_id'] not in gids:
