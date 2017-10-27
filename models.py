@@ -58,6 +58,7 @@ class Video(BaseModel):
     top_comments = Column(Integer)
     is_expired = Column(Integer)
     check_expire_time = Column(BIGINT)
+    source = Column(VARCHAR(16))
 
     def conv_result(self):
         ret = {}
@@ -86,6 +87,7 @@ class Video(BaseModel):
         # ret["is_expired"] = int(self.is_expired)
         # ret["check_expire_time"] = int(self.check_expire_time)
         ret['online_time'] = int(self.online_time)
+        ret['source'] = self.source
         return ret
 
 
