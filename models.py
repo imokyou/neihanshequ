@@ -32,8 +32,8 @@ class Video(BaseModel):
     __tablename__ = "videos"
     id = Column("id", Integer, primary_key=True)
 
-    group_id = Column(Integer)
-    item_id = Column(Integer)
+    group_id = Column(VARCHAR(64), nullable=False)
+    item_id = Column(VARCHAR(64), nullable=False)
     video_id = Column(VARCHAR(64), nullable=False)
     content = Column(VARCHAR(1024), nullable=True)
     category_id = Column(Integer, nullable=False)
@@ -155,8 +155,8 @@ class VideoWeb(BaseModel):
 class Comment(BaseModel):
     __tablename__ = "comments"
     id = Column("id", Integer, primary_key=True)
-    group_id = Column(Integer)
-    item_id = Column(Integer)
+    group_id = Column(VARCHAR(64), nullable=False)
+    item_id = Column(VARCHAR(64), nullable=False)
     user_id = Column(VARCHAR(64), nullable=False)
     user_name = Column(VARCHAR(128), nullable=False)
     user_avatar = Column(VARCHAR(256), nullable=False)
