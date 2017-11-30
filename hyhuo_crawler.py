@@ -28,7 +28,7 @@ def get_from_http():
                 videos = []
                 for item in content['data']['data_list']:
                     video_id = 'hyhuo_' + item['vid']
-                    print video_id, item['title']
+                    print video_id
                     info = {
                         'video_id': video_id,
                         'group_id': video_id,
