@@ -153,7 +153,7 @@ class VideoWeb(BaseModel):
 
 
 class Comment(BaseModel):
-    __tablename__ = "comments"
+    __tablename__ = "comments_v3"
     id = Column("id", Integer, primary_key=True)
     group_id = Column(VARCHAR(64), nullable=False)
     item_id = Column(VARCHAR(64), nullable=False)
@@ -310,6 +310,8 @@ class Mgr(object):
                 q = q.filter(Video.is_expired == int(params['is_expired']))
             if params.get('online_time', '') != '':
                 q = q.filter(Video.online_time >= int(params['online_time']))
+            if params.get('source', '') != '':
+                q = q.filter(Video.source == params['source'])
             if params.get('order', '') == 'asc':
                 q = q.order_by(Video.comment_count.asc())
             else:

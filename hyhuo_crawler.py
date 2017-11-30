@@ -3,15 +3,17 @@ import traceback
 import json
 import requests
 from time import time, sleep
+from random import randrange
 from db import DBStore
 import config
+import hyhuo_comment_crawler as hycomment
 
 
 def get_from_http():
     db = DBStore()
     total = 0
     api = 'https://search.hyhuo.com/so/tag'
-    params = {'sort': 'new', 'page': 1, 'keyword': '红人'}
+    params = {'sort': 'hot', 'page': 1, 'keyword': '红人'}
 
     while True:
         try:
@@ -50,17 +52,28 @@ def get_from_http():
                         'source': 'hyhuo'
                     }
                     if u'万' in item['play_num']:
-                        info['play_count'] = int(item['play_num'].replace('万'))*10000
+                        info['play_count'] = int(float(item['play_num'].replace(u'万', ''))*10000)
                     else:
                         info['play_count'] = int(item['play_num'])
 
-                    if u'万' in item['download_num']:
-                        info['share_count'] = int(item['download_num'].replace('万'))*10000
+                    randcount = int(info['play_count']/100)
+                    if randcount >= 2:
+                        info['share_count'] = randrange(randcount/2, randcount)
+                        info['digg_count'] = randrange(randcount/2, randcount)
+                        info['comment_count'] = randrange(randcount/2, randcount)
                     else:
-                        info['share_count'] = int(item['download_num'])
-                    videos.append(info)
+                        info['share_count'] = randrange(0, 200)
+                        info['digg_count'] = randrange(0, 200)
+                        info['comment_count'] = randrange(0, 200)
+
+                    # videos.append(info)
                     total += 1
-                db.save(videos)
+                    c = hycomment.get_from_http(item['vid'])
+
+                    if c > 0:
+                        info['comment_count'] = 0
+                    db.save([info])
+                    sleep(config.HYHUO_CRAWL_PAGE_SLEEP)
         except:
             traceback.print_exc()
         params['page'] += 1

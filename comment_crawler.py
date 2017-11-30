@@ -46,9 +46,9 @@ def parse_items(resp):
     top_comments = []
     for data in resp['data']['top_comments']:
         info = {
-            'group_id': int(data['group_id']),
-            'item_id': int(data['group_id']),
-            'user_id': int(data['user_id']),
+            'group_id': data['group_id'],
+            'item_id': data['group_id'],
+            'user_id': data['user_id'],
             'user_name': data['user_name'],
             'user_avatar': data['avatar_url'],
             'create_time': data['create_time'],
@@ -85,8 +85,8 @@ class Crawler(object):
         while True:
             params = {
                 'comment_crawled': 0,
-                'limit': _WORKER_THREAD_NUM
-                # 'category_id': [12, 109, 187]
+                'limit': _WORKER_THREAD_NUM,
+                'source': 'neihan'
             }
             videos = _DB.get_videos(params)
             pools.map(crawl_comment, videos)
