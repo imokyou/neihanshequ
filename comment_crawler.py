@@ -84,8 +84,9 @@ class Crawler(object):
         pools = Pool(_WORKER_THREAD_NUM)
         while True:
             params = {
-                'top_comments': 0,
+                'comment_crawled': 0,
                 'limit': _WORKER_THREAD_NUM
+                # 'category_id': [12, 109, 187]
             }
             videos = _DB.get_videos(params)
             pools.map(crawl_comment, videos)

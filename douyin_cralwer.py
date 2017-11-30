@@ -9,27 +9,30 @@ def get_from_http():
     db = DBStore()
     total = 0
     api = 'http://video.neargh.com:9099/getMsgList'
-    params = {'startId': 1}
+    params = {'startId': 0}
 
-    for i in xrange(2, 10000):
-        params['startId'] = i
+    while True:
         print params
         try:
             resp = requests.post(api, data=json.dumps(params), timeout=30)
             print resp
+            print 'saving video...'
             if resp and resp.status_code == 200:
                 content = resp.json()
-                if content['errcode'] != 200:
+                if len(content['list']) == 0:
                     break
+                print 'get videos num: {}'.format(len(content['list']))
+                videos = []
                 for item in content['list']:
                     video_id = 'dy_' + item['video_id']
+                    print item['id'], video_id
                     info = {
                         'video_id': video_id,
                         'group_id': video_id,
                         'item_id': video_id,
                         'content': item['content'],
-                        'category_id': 12,
-                        'category_name': '女神来了',
+                        'category_id': 1111,
+                        'category_name': '抖音视频',
                         'url': item['url'],
                         'vurl': item['url'],
                         'cover_image': item['cover_image'],
@@ -40,14 +43,17 @@ def get_from_http():
                         'play_count': item['play_count'],
                         'share_count': item['share_count'],
                         'digg_count': item['digg_count'],
+                        'bury_count': 0,
+                        'repin_count': 0,
                         'comment_count': item['comment_count'],
                         'source': 'douyin'
                     }
-                    print info
-                    db.save([info])
+                    videos.append(info)
                     total += 1
+                db.save(videos)
         except:
             traceback.print_exc()
+        params['startId'] += 200
     print 'total pages: {}, total records: {}'.format(params['startId'], total)
     print 'Script Done'
 

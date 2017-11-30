@@ -95,8 +95,23 @@ CREATE TABLE IF NOT EXISTS `comments` (
     `content` VARCHAR(1024) NOT NULL COMMENT '内容',
     `digg_count` INT(11) NOT NULL DEFAULT '0' COMMENT '被顶次数',
     `comment_count` INT(11) NOT NULL DEFAULT '0' COMMENT '被评论次数',
-    `group_id` BIGINT(20) NOT NULL COMMENT '视频分组ID',
-    `item_id` BIGINT(20) NOT NULL COMMENT '该记录在第三方平台的ID',
+    `group_id` VARCHAR(64) NOT NULL COMMENT '视频分组ID',
+    `item_id` VARCHAR(64) NOT NULL COMMENT '该记录在第三方平台的ID',
+    PRIMARY KEY (`id`) 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+CREATE TABLE IF NOT EXISTS `comments_v2` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `user_id` BIGINT(20) NOT NULL COMMENT '发布者ID',
+    `user_name` VARCHAR(128) NOT NULL COMMENT '发布者名称',
+    `user_avatar` VARCHAR(258) NOT NULL COMMENT '发布者头像',
+    `create_time` BIGINT(20) NOT NULL DEFAULT '0' COMMENT '发布时间',
+    `content` VARCHAR(1024) NOT NULL COMMENT '内容',
+    `digg_count` INT(11) NOT NULL DEFAULT '0' COMMENT '被顶次数',
+    `comment_count` INT(11) NOT NULL DEFAULT '0' COMMENT '被评论次数',
+    `group_id` VARCHAR(64) NOT NULL COMMENT '视频分组ID',
+    `item_id` VARCHAR(64) NOT NULL COMMENT '该记录在第三方平台的ID',
     PRIMARY KEY (`id`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

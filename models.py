@@ -253,6 +253,7 @@ class Mgr(object):
             self.session.close()
 
     def video_web_exists(self, video_id):
+        return False
         try:
             exists = self.session.query(VideoWeb) \
                 .filter(VideoWeb.video_id == video_id) \

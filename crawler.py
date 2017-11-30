@@ -39,7 +39,7 @@ class NeihanSpider(object):
         return self._crawler(content_type='-104')
 
     def crawl_video_dx(self):
-        return self._crawler(category_id="189")
+        return self._crawler(category_id="187")
 
     def crawl_video_mt(self):
         return self._crawler(category_id="109")
@@ -146,7 +146,8 @@ class NeihanSpider(object):
             'comment_count': d['comment_count'],
             'has_comments': int(d['has_comments']),
             'comments': json.dumps(data['comments']),
-            'top_comments': 0
+            'top_comments': 0,
+            'comment_crawled': 0
         }
         info['vurl'] = 'http://i.snssdk.com/neihan/video/playback/timestamp/?video_id={}&quality=480p&line=0&is_gif=0.mp4'.format(d['video_id'])
         return info
