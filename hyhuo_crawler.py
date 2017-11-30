@@ -41,21 +41,30 @@ def get_from_http():
                         'user_id': item['uid'],
                         'user_name': item['username'],
                         'user_avatar': item['user_avatar'],
-                        'play_count': item['play_num'],
-                        'share_count': item['download_num'],
+                        'play_count': 0,
+                        'share_count': 0,
                         'digg_count': 0,
                         'bury_count': 0,
                         'repin_count': 0,
                         'comment_count': 0,
                         'source': 'hyhuo'
                     }
+                    if u'万' in item['play_num']:
+                        info['play_count'] = int(item['play_num'].replace('万'))*10000
+                    else:
+                        info['play_count'] = int(item['play_num'])
+
+                    if u'万' in item['download_num']:
+                        info['share_count'] = int(item['download_num'].replace('万'))*10000
+                    else:
+                        info['share_count'] = int(item['download_num'])
                     videos.append(info)
                     total += 1
                 db.save(videos)
         except:
             traceback.print_exc()
         params['page'] += 1
-        sleep(config.HY_CRAWL_PAGE_SLEEP)
+        sleep(config.HYHUO_CRAWL_PAGE_SLEEP)
     print 'total pages: {}, total records: {}'.format(params['page'], total)
     print 'Script Done'
 
