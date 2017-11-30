@@ -43,8 +43,8 @@ def get_from_http(video_id):
                 comments = []
                 for item in content['data']:
                     info = {
-                        'group_id': 'hyhuo'+str(video_id),
-                        'item_id': 'hyhuo'+str(video_id),
+                        'group_id': 'hyhuo_'+str(video_id),
+                        'item_id': 'hyhuo_'+str(video_id),
                         'user_id': item['uid'],
                         'user_name': item['username'],
                         'user_avatar': item['user_avatar'],
