@@ -59,6 +59,7 @@ class Video(BaseModel):
     is_expired = Column(Integer)
     check_expire_time = Column(BIGINT)
     source = Column(VARCHAR(16))
+    comment_crawled = Column(Integer)
 
     def conv_result(self):
         ret = {}
@@ -88,6 +89,7 @@ class Video(BaseModel):
         # ret["check_expire_time"] = int(self.check_expire_time)
         ret['online_time'] = int(self.online_time)
         ret['source'] = self.source
+        ret['comment_crawled'] = self.comment_crawled
         return ret
 
 
@@ -272,7 +274,10 @@ class Mgr(object):
                 return None
             self.session.query(Video) \
                 .filter(Video.group_id.in_(gids)) \
-                .update({'top_comments': 1}, synchronize_session='fetch')
+                .update(
+                    {'top_comments': 1, 'comment_crawled': 1},
+                    synchronize_session='fetch'
+                )
             self.session.commit()
         except Exception, e:
             traceback.print_exc()
@@ -302,6 +307,8 @@ class Mgr(object):
             q = self.session.query(Video)
             if params.get('top_comments', '') != '':
                 q = q.filter(Video.top_comments == int(params['top_comments']))
+            if params.get('comment_crawled', '') != '':
+                q = q.filter(Video.comment_crawled == int(params['comment_crawled']))
             if params.get('category_id', '') != '':
                 q = q.filter(Video.category_id == int(params['category_id']))
             if params.get('category_name', '') != '':
