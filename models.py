@@ -311,6 +311,8 @@ class Mgr(object):
                 q = q.filter(Video.comment_crawled == int(params['comment_crawled']))
             if params.get('category_id', '') != '':
                 q = q.filter(Video.category_id == int(params['category_id']))
+            if params.get('category_ids', ''):
+                q = q.filter(Video.category_id.in_(params['category_ids']))
             if params.get('category_name', '') != '':
                 q = q.filter(Video.category_name.contains(category_name))
             if params.get('is_expired', '') != '':
