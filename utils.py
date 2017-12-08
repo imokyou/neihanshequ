@@ -12,7 +12,10 @@ def get_page(url, headers={}, count=0):
             logging.info('Max retries exceeded with url, retry: %s times' % count)
             return None
         # print url
-        resp = requests.get(url, timeout=DOWNLOAD_TIMEOUT)
+        if headers:
+            resp = requests.get(url, headers=headers, timeout=DOWNLOAD_TIMEOUT)
+        else:
+            resp = requests.get(url, timeout=DOWNLOAD_TIMEOUT)
         print resp
         if not resp or resp.status_code != 200:
             count = count + 1
@@ -25,7 +28,6 @@ def get_page(url, headers={}, count=0):
         sleep(CRAWL_PAGE_SLEEP)
         get_page(url, headers=headers, count=count)
     return None
-
 
 def conbine_params(params):
     query_strs = []
