@@ -77,10 +77,7 @@ class NeihanSpider(object):
                         # print info
                         ret.append(info)
                     self._db.save(ret)
-                    if int(params['max_time']) <= resp['data']['min_time']:
-                        params['max_time'] = str(int(params['max_time'] - 3600000))
-                    else:
-                        params['max_time'] = str(resp['data']['min_time'])
+                    params['max_time'] = str(int(params['max_time']) - 3600000)
                     logging.info('休息30秒')
                     sleep(30)
                 else:
