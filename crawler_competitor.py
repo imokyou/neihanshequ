@@ -65,12 +65,12 @@ class NeihanSpider(object):
             'category_id': '1114',
             'category_name': '内涵有料',
             'url': d['video_url'],
-            'cover_image': d['images'],
+            'cover_image': 'https://xcx.mengjukeji.com/'.d['images'],
             'online_time': data['add_time'],
 
             'user_id': d['member_id'],
             'user_name': d['nickname'],
-            'user_avatar': d['headimgurl'],
+            'user_avatar': 'https://xcx.mengjukeji.com/'.d['headimgurl'],
 
             'play_count': d['view_num'],
             'bury_count': 0,
