@@ -19,7 +19,7 @@ class NeihanSpider(object):
 
     def crawl_video(self):
         params = {
-            'p': 1,
+            'p': '1',
             'id': ''
         }
         headers = {
@@ -40,7 +40,7 @@ class NeihanSpider(object):
                         info = self._parse_item(content)
                         ret.append(info)
                     self._db.save(ret)
-                    params['p'] += 1;
+                    params['p'] = str(int(params['p']) + 1);
                     logging.info('休息30秒')
                     sleep(60)
                 else:
