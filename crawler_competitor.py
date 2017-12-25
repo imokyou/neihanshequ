@@ -69,11 +69,11 @@ class NeihanSpider(object):
     def _video_item(self, data):
         info = {}
         d = data
-
+        video_id = 'comp_{}'.format(d['video_video_id'])
         info = {
-            'group_id': d['video_video_id'],
-            'item_id': d['video_video_id'],
-            'video_id': d['video_video_id'],
+            'group_id': video_id,
+            'item_id': video_id,
+            'video_id': video_id,
             'content': d['name'],
             'category_id': '1114',
             'category_name': '有料段子',
