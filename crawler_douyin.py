@@ -6,7 +6,7 @@ from random import randrange
 import json
 import traceback
 from config import *
-from utils import get_page_post, conbine_params
+from utils import *
 from db import DBStore
 import uploadImg
 
