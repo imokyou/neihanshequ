@@ -29,6 +29,32 @@ def get_page(url, headers={}, count=0):
         get_page(url, headers=headers, count=count)
     return None
 
+
+def get_page_post(url, data, headers={}, count=0):
+    try:
+        if count > RETRY_TIMES:
+            logging.info('Max retries exceeded with url, retry: %s times' % count)
+            return None
+        # print url
+        if headers:
+            resp = requests.post(url, data=data, headers=headers, timeout=DOWNLOAD_TIMEOUT)
+        else:
+            resp = requests.post(url, data=data, timeout=DOWNLOAD_TIMEOUT)
+        print resp
+        if not resp or resp.status_code != 200:
+            count = count + 1
+            sleep(CRAWL_PAGE_SLEEP)
+            get_page_post(url, data=data, headers=headers, count=count)
+        return resp.json()
+    except:
+        traceback.print_exc()
+        count = count + 1
+        sleep(CRAWL_PAGE_SLEEP)
+        get_page_post(url, data=data, headers=headers, count=count)
+    return None
+
+
+
 def conbine_params(params):
     query_strs = []
     for k, v in params.iteritems():

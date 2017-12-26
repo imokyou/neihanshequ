@@ -1,0 +1,29 @@
+1. 检查sessionID 是否合法 https://v-api.mengjukeji.com/index.php/40/Connotations/Index/checkSessionId
+{
+    "data": "",
+    "msg": "session\u8fc7\u671f",
+    "code": 100
+}
+2. 不合法则请求一个合法的sessionID  https://v-api.mengjukeji.com/index.php/40/Connotations/Member/index?code=003aOu2C0ehBvg22U75C0RsD2C0aOu2s&rawData=%7B%22nickName%22%3A%22%E6%9C%9B%E6%9C%88%22%2C%22gender%22%3A1%2C%22language%22%3A%22zh_CN%22%2C%22city%22%3A%22Guangzhou%22%2C%22province%22%3A%22Guangdong%22%2C%22country%22%3A%22China%22%2C%22avatarUrl%22%3A%22https%3A%2F%2Fwx.qlogo.cn%2Fmmopen%2Fvi_32%2F3Oxiciccqjtqc67SH0fiayJFHibe05meVCStBIcQ87WRnaCs7tuXCTcdSGibuKFbNOY9xzCPo3OjpHEOBK9KqQX6n5w%2F0%22%7D&signature=2de1eb1dcb8f5b9a7bcaf944510306e1d2f74eef&encryptedData=BKdP6dMhfmHZ4ABxTNgGObH7fc6irYfIj%2FDx3HSXxPleWUnA5THj%2BSmj4KEPhlnwV%2BH%2F%2BGcGHUWkODk59oiGe0sKGqbdFkaz3gYYnwfplc%2FNzxQnAZaStggbMgiT9aaU6BgsFwr0JDSF9xqtwyOexaSFh7bNzofR7DzQDtG7OM5CXDZnpSjDIFYNJQiDVOrgwXRyFz8LoOHYxZRZYeks%2B5elq9xQlStUuXkMW2x1QYlFigKHfzEasvGXz%2FFoPqbI9hWarG0lEisjY5oc5Mh9pz6RwVl4JrEsRaGL7CfUiXabi32RZpTCA5cYn%2Fs2Jw8F7fP%2FPXfnMufbe2y%2FcX2i%2B7qJjjO5aHMZrU2vI%2FXIP%2F8986qPoCQZt4mIO0w4TYzHva2IN%2BW9ppBxxr4tukTK7Z9URK9fm%2F3p7%2Fj1xkrFEtGPIEyQDAFtp7tWi9bICpjd0%2BLkTZRz0qt17MM9ExRkRRNTBffuHwRsRxQ67U42M88%3D&iv=%2FkRuiMlkR8l1Cj44v7fosQ%3D%3D&scenceid=1001
+{
+    "data": {
+        "openid": "o4kUP0Tc0ewCX2YnAqUiDjhE9u9M",
+        "sessionId": "ahjpideturqkelck7s33vm4bq2"
+    },
+    "msg": "\u83b7\u53d6\u6210\u529f",
+    "code": 200
+}
+
+3. 把合法的sessionID 加到cookie上一起请求 https://v-api.mengjukeji.com/index.php/40/Connotations/VideoVideo/index?p=1&id=
+GET /index.php/40/Connotations/VideoVideo/index?p=1&id= HTTP/1.1
+charset utf-8
+Accept-Encoding gzip
+referer https://servicewechat.com/wxec920bf7a9fd3d8a/1/page-frame.html
+cookie  PHPSESSID=ahjpideturqkelck7s33vm4bq2
+content-type    application/json
+User-Agent  Mozilla/5.0 (Linux; Android 7.1.1; ONEPLUS A5000 Build/NMF26X; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.132 Mobile MQQBrowser/6.2 TBS/043722 Safari/537.36 MicroMessenger/6.5.23.1180 NetType/4G Language/zh_CN MicroMessenger/6.5.23.1180 NetType/WIFI Language/zh_CN
+Host    v-api.mengjukeji.com
+Connection  Keep-Alive
+
+
+https://v-api.mengjukeji.com/index.php/40/Connotations/VideoVideo/index?p=2&id=
