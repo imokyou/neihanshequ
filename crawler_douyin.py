@@ -47,7 +47,7 @@ class NeihanSpider(object):
                 logging.info('Crawl video guanzhu...')
                 ret = []
                 request_url = API_DY
-                resp = get_page(request_url, headers=headers, timeout=30)
+                resp = get_page(request_url, headers=headers)
                 if resp:
                     contents = resp['aweme_list']
                     if len(contents) == 0:
