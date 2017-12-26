@@ -24,7 +24,7 @@ token   9351d4b1bcc748b597dd7c3cdeed6feb-780974892
 os  android
 sig 08eb6c14f5b29a68de3ba93f87cb0e55
 '''
-API_DY_CURSOR = 'https://aweme.snssdk.com/aweme/v1/story/?cursor=0&count=20&retry_type=no_retry&iid=20779054872&device_id=40113379514&ac=wifi&channel=oppo&aid=1128&app_name=aweme&version_code=166&version_name=1.6.6&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&language=zh&os_api=25&os_version=7.1.1&uuid=99000979108573&openudid=683195cfdb2b2c4c&manifest_version_code=166&resolution=1080*1920&dpi=480&update_version_code=1662&_rticket={}&ts=1514257100&as=a1850ba46c7c7adac1&cp=b8c7aa5ec51244a6e1'
+API_DY_CURSOR = 'https://aweme.snssdk.com/aweme/v1/story/?cursor=0&count=20&retry_type=no_retry&iid=20779054872&device_id=40113379514&ac=wifi&channel=oppo&aid=1128&app_name=aweme&version_code=166&version_name=1.6.6&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&language=zh&os_api=25&os_version=7.1.1&uuid=99000979108573&openudid=683195cfdb2b2c4c&manifest_version_code=166&resolution=1080*1920&dpi=480&update_version_code=1662&_rticket={}&ts={}&as=a1850ba46c7c7adac1&cp=b8c7aa5ec51244a6e1'
 
 API_DY = 'https://aweme.snssdk.com/aweme/v1/feed/?type=0&min_cursor={}&count=6&volume=0.06666666666666667&retry_type=no_retry&iid=20779054872&device_id=40113379514&ac=wifi&channel=oppo&aid=1128&app_name=aweme&version_code=166&version_name=1.6.6&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&language=zh&os_api=25&os_version=7.1.1&uuid=99000979108573&openudid=683195cfdb2b2c4c&manifest_version_code=166&resolution=1080*1920&dpi=480&update_version_code=1662&_rticket={}&ts={}&as=a1055b74549a0a68e1&cp=bda6aa574915488ce1'
 
@@ -48,10 +48,15 @@ class NeihanSpider(object):
             try:
                 logging.info('Crawl video guanzhu...')
                 ret = []
-                # request_url = API_DY_CURSOR.format(int(time()*1000))
-                request_url = API_DY.format(int(time()*1000), int(time()*1000), int(time()))
-                resp = get_page(request_url, headers=headers)
+                s = requests.Session()
+
+                ts, rts = int(time()), int(time()*1000)
+                resp_cursor = s.get(API_DY_CURSOR.format(rts, ts), headers=headers, timeout=30)
+                print resp_cursor
+
+                resp = s.get(API_DY.format(rts, rts, ts), headers=headers, timeout=30)
                 print resp
+
                 if resp:
                     contents = resp['aweme_list']
                     if len(contents) == 0:
