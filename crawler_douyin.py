@@ -14,15 +14,7 @@ import uploadImg
 _WORKER_THREAD_NUM = 1
 
 '''
-POST /rest/n/feed/hot?mod=OnePlus(ONEPLUS%20A5000)&lon=0&country_code=cn&did=ANDROID_683195cfdb2b2c4c&net=WIFI&app=0&oc=OPPO&ud=780974892&c=OPPO&sys=ANDROID_7.1.1&appver=5.4.7.5533&ftt=&language=zh-cn&iuid=&lat=0&ver=5.4&max_memory=256 HTTP/1.1
-tag 美女
-count   20
-ussid   M183ODA5NzQ4OTJfMTUxNDE4OTI4ODQxMF_nvo7lpbM
-client_key  3c2cd3f3
-__NStokensig    15fe45abe09cb1dd4c2f2bb70e1fb56c3a683b43c1dbf237bf740a7a12890d68
-token   9351d4b1bcc748b597dd7c3cdeed6feb-780974892
-os  android
-sig 08eb6c14f5b29a68de3ba93f87cb0e55
+
 '''
 API_DY_CURSOR = 'https://aweme.snssdk.com/aweme/v1/story/?cursor=0&count=20&retry_type=no_retry&iid=20779054872&device_id=40113379514&ac=wifi&channel=oppo&aid=1128&app_name=aweme&version_code=166&version_name=1.6.6&device_platform=android&ssmix=a&device_type=ONEPLUS+A5000&device_brand=OnePlus&language=zh&os_api=25&os_version=7.1.1&uuid=99000979108573&openudid=683195cfdb2b2c4c&manifest_version_code=166&resolution=1080*1920&dpi=480&update_version_code=1662&_rticket={}&ts={}&as=a1850ba46c7c7adac1&cp=b8c7aa5ec51244a6e1'
 
@@ -53,9 +45,11 @@ class NeihanSpider(object):
                 ts, rts = int(time()), int(time()*1000)
                 resp_cursor = s.get(API_DY_CURSOR.format(rts, ts), headers=headers, timeout=30)
                 print resp_cursor
+                print resp_cursor.json()
 
                 resp = s.get(API_DY.format(rts, rts, ts), headers=headers, timeout=30)
                 print resp
+                print resp.json()
 
                 if resp:
                     contents = resp['aweme_list']

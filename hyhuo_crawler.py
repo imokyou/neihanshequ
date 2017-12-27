@@ -13,7 +13,7 @@ def get_from_http():
     db = DBStore()
     total = 0
     api = 'https://search.hyhuo.com/so/tag'
-    params = {'sort': 'hot', 'page': 1, 'keyword': '红人'}
+    params = {'sort': 'hot', 'page': 1, 'keyword': '美女'}
 
     while True:
         try:
@@ -68,7 +68,7 @@ def get_from_http():
 
                     # videos.append(info)
                     total += 1
-                    c = hycomment.get_from_http(item['vid'])
+                    # c = hycomment.get_from_http(item['vid'])
 
                     if c > 0:
                         info['comment_count'] = 0
