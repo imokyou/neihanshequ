@@ -16,7 +16,7 @@ def get_from_http():
     # params = {'sort': 'hot', 'page': 1, 'keyword': '美女'}
 
     api = 'https://search.hyhuo.com/so'
-    params = {'page': 1, 'keyword': '美女'}
+    params = {'page': 1, 'type': 'title', 'keyword': '美女'}
 
     while True:
         try:
