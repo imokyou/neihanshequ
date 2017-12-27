@@ -76,7 +76,7 @@ def get_from_http():
                     # if c > 0:
                     #     info['comment_count'] = 0
                     db.save([info])
-                    sleep(config.HYHUO_CRAWL_PAGE_SLEEP)
+            sleep(config.HYHUO_CRAWL_PAGE_SLEEP)
         except:
             traceback.print_exc()
         params['page'] += 1
